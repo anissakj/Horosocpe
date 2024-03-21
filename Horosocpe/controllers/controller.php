@@ -7,6 +7,7 @@ switch($action)
         {
             //var_dump($_REQUEST);
             $liste=$_REQUEST['liste'];
+            $signe=getleSigne($liste);
             //include = afficher fichier /
             include 'views/reponse.php';
             break;
@@ -18,6 +19,7 @@ switch($action)
             $mdp=$_REQUEST['mdp'];
             $flag=getConnexion($login,$mdp);
             if($flag){
+                $signe=signe($login,$mdp);
                 include 'views/choix.php';
             }else {
                  include 'views/connexion.php';

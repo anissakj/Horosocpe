@@ -1,5 +1,5 @@
 <?php
-function signe($signe){
+function signe(){
 
 $signe= array(
     "Bélier" => "Vous dezvez faire les efforts les plus sérieux pour acquérir un bon niveau.",
@@ -19,13 +19,45 @@ return $signe;
 }
 
 
-function connexion(){
+/*function connexion(){
     $connexion=array(
     "titi"=>"abc",
-    "mot_de_passe"=>"1234",
+    "toto"=>"1234",
 );
 return $connexion;
+}*/
+
+function connexion(){
+
+    $serveur='mysql:host=localhost';
+    $bdd='dbname=horoscope';
+    $user='root';
+    $mdp='';
+    try {
+        $db= new PDO($serveur.';'.$bdd,$user,$mdp);
+        $db->query('SET CHARACTER SET utf8');
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+        $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+        return $db;
+    }catch(PDOException $e){
+        echo'Impossible de se connecter à la base de donnée';
+        echo $e->getMessage();
+        die();
+    }
 }
+
+function executerRequete($sql,$params=null){
+
+    if($params==null){
+        $resultat =connexion()->query($sql);
+    }
+    return $resultat;
+}
+
+
+
+    
+
 
 
 
