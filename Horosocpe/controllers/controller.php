@@ -5,31 +5,52 @@ switch($action)
 {
     case 'reponse':
         {
+            
+            //Données renvoyés par le formulaire
             //var_dump($_REQUEST);
-            $liste=$_REQUEST['liste'];
-            $signe=getleSigne($liste);
+            //$liste=$_REQUEST['liste'];
+            //appel fonction du modele
+            //$signe=getleSigne($liste);
             //include = afficher fichier /
+           // include 'views/reponse.php';
+           // break;
+           $choix = $_REQUEST['liste'];
+           $tab = getleSigne($choix);
+          // var_dump($tab);
+           $horoscope=$tab['horoscope'];
+           // var_dump( $horoscope){
             include 'views/reponse.php';
             break;
         }
+
+        
     case 'connexion':
         {
-    
+            //Données renvoyés par le formulaire
             $login=$_REQUEST['login'];
             $mdp=$_REQUEST['mdp'];
+            //appel fonction du modele
             $flag=getConnexion($login,$mdp);
-            if($flag){
-                $signe=signe($login,$mdp);
+            var_dump($flag);
+             $signe=getLesSignes();
+            //envoyer des données à la vue
+            if($flag['nb']==1 ){   
+
                 include 'views/choix.php';
             }else {
                  include 'views/connexion.php';
             }
             break;
         }
-    case 'modifier':
+    case 'modifier':{
         {
-            $signe=$_REQUEST['signe'];
+        
+             //Données renvoyés par le formulaire
+            $signe=$_REQUEST['signe'];}
+            
+              //appel fonction du modele
             $signe=signe($signe);
+             //envoyer des données à la vue
             include 'views/admin.php';
             break;
         }

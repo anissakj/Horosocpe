@@ -1,5 +1,5 @@
 <?php
-function signe(){
+/*function signe(){
 
 $signe= array(
     "Bélier" => "Vous dezvez faire les efforts les plus sérieux pour acquérir un bon niveau.",
@@ -19,7 +19,7 @@ return $signe;
 }
 
 
-/*function connexion(){
+function connexion(){
     $connexion=array(
     "titi"=>"abc",
     "toto"=>"1234",
